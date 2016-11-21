@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>HERO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="#ES6-MIXIN
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647 //通过class实现混入//extends 可以继承动态构造的类const Mixin = Sup =&amp;gt; class extends Sup &amp;#123;    //构造方法    //this关键">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HERO">
+<meta property="og:url" content="http://hero-guo.com/2016/01/28/ES6-mixin/index.html">
+<meta property="og:site_name" content="HERO">
+<meta property="og:description" content="#ES6-MIXIN
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647 //通过class实现混入//extends 可以继承动态构造的类const Mixin = Sup =&amp;gt; class extends Sup &amp;#123;    //构造方法    //this关键">
+<meta property="og:updated_time" content="2016-07-05T04:22:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HERO">
+<meta name="twitter:description" content="#ES6-MIXIN
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647 //通过class实现混入//extends 可以继承动态构造的类const Mixin = Sup =&amp;gt; class extends Sup &amp;#123;    //构造方法    //this关键">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/atom.xml">Rss</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://hero-guo.com"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="post-ES6-mixin" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    <div class="article-meta">
+      <a href="/2016/01/28/ES6-mixin/" class="article-date">
+  <time datetime="2016-01-28T04:19:10.000Z" itemprop="datePublished">2016-01-28</time>
+</a>
+      
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#ES6-MIXIN</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"> //通过class实现混入</div><div class="line">//extends 可以继承动态构造的类</div><div class="line">const Mixin = Sup =&gt; class extends Sup &#123;</div><div class="line">    //构造方法</div><div class="line">    //this关键字则代表实例对象</div><div class="line">    constructor(...args) &#123;</div><div class="line">        //（1）作为函数调用时（即super(...args)），super代表父类的构造函数。</div><div class="line">        //（2）作为对象调用时（即super.prop或super.method()），super代表父类。注意，此时super即可以引用父类实例的属性和方法，也可以引用父类的静态方法。</div><div class="line">        super(...args);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Widget &#123;</div><div class="line">    constructor(width, height, $elem) &#123;</div><div class="line">        Object.assign(this, &#123;</div><div class="line">            width,</div><div class="line">            height,</div><div class="line">            $elem: null</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">    render($where) &#123;</div><div class="line">         if (this.$elem) &#123;</div><div class="line">             this.$elem.css(&#123;</div><div class="line">             width: this.width + &apos;px&apos;,</div><div class="line">             height: this.height + &apos;px&apos;</div><div class="line">            &#125;).appendTo($where);</div><div class="line">          &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Button extends Mixin(Widget) &#123;</div><div class="line">  constructor(width, height, label)&#123;</div><div class="line">    super(width, height);</div><div class="line">    this.label = label;</div><div class="line">    this.$elem = $(&apos;&lt;button&gt;&apos;).text(this.label);</div><div class="line">  &#125;</div><div class="line">  render($where) &#123;</div><div class="line">    super.render($where);</div><div class="line">    this.$elem.click(this.onClick);</div><div class="line">  &#125;</div><div class="line">  onClick() &#123;</div><div class="line">    console.log(&apos;Button&apos; + this.label + &apos;clicked!&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">const $body = $(document.body) || document.body;</div><div class="line">let btn = new Button(125, 30, &apos;hello world&apos;);</div><div class="line">btn.render($body);</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/01/28/ECMAScript2015/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/01/28/object-prototype/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+<div class="share_addthis">
+  <div class="sharing addthis_toolbox share">
+    <a class="addthis_button_facebook_like"></a>
+    <a class="addthis_button_tweet"></a>
+    <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-560c64c35486b3d4" async="async"></script>
+</div>
+
+
+
+
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Hero Guo&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

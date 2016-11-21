@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>HERO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="#类的继承
+
+混合复制
+//复制source对象的属性
+function mixin(source, target) {
+    for (var key in source) {
+        if (!(key in target)) {
+            target[key] = source[key];
+        }
+    }
+    return target;
+}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HERO">
+<meta property="og:url" content="http://hero-guo.com/2016/01/28/object-prototype/index.html">
+<meta property="og:site_name" content="HERO">
+<meta property="og:description" content="#类的继承
+
+混合复制
+//复制source对象的属性
+function mixin(source, target) {
+    for (var key in source) {
+        if (!(key in target)) {
+            target[key] = source[key];
+        }
+    }
+    return target;
+}">
+<meta property="og:updated_time" content="2016-07-04T15:33:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HERO">
+<meta name="twitter:description" content="#类的继承
+
+混合复制
+//复制source对象的属性
+function mixin(source, target) {
+    for (var key in source) {
+        if (!(key in target)) {
+            target[key] = source[key];
+        }
+    }
+    return target;
+}">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/atom.xml">Rss</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://hero-guo.com"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="post-object-prototype" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    <div class="article-meta">
+      <a href="/2016/01/28/object-prototype/" class="article-date">
+  <time datetime="2016-01-28T04:19:10.000Z" itemprop="datePublished">2016-01-28</time>
+</a>
+      
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#类的继承</p>
+<ol>
+<li><p>混合复制</p>
+<pre><code>//复制source对象的属性
+function mixin(source, target) {
+    for (var key in source) {
+        if (!(key in target)) {
+            target[key] = source[key];
+        }
+    }
+    return target;
+}
+
+var Vehicle = {
+    engines: 1,
+    ignition: function() {
+        console.log(&quot; Turning on my forward! &quot;);
+    },
+    drive: function() {
+        this.ignition();
+        console.log(&quot; Steering and moving forward! &quot;);
+    }
+};
+
+//Car复制Vehicle的属性值和函数引用
+var Car = mixin(Vehicle, {
+    wheels: 4,
+    drive: function() {
+    //显示指定Vehicle对象调用dirve方法
+    //如果直接执行Vehicle.dirve()，函数调用中的this就会绑定到Vehicle上，所以使用.call(this)来确保dirve在Car对象的上下文中执行;
+    Vehicle.drive.call(this);
+        console.log(&quot; Rolling on all &quot; + this.wheels + &quot;wheels!&quot;);
+    }
+});
+Car.drive();
+</code></pre></li>
+<li><p>寄生继承<br> 首先复制一份父类（Vehicle），然后混入子类（Car）。然后构建实例。</p>
+<pre><code>//类
+function Vehicle() {
+    this.engines = 1;
+}
+Vehicle.prototype.ignition = function() {
+    console.log(&quot; Turning on my forward! &quot;);
+};
+Vehicle.prototype.drive = function() {
+    this.ignition();
+    console.log(&quot; Steering and moving forward! &quot;);
+};
+
+//寄生类Car
+function Car() {
+    //car 是一个Vehicle
+    var car = new Vehicle();
+
+    car.wheels = 4;
+    //保存Vehicle::drive()的特殊引用
+    var vehDrive = car.drive;
+
+    //重写Vehicle::drive()
+    car.drive = function() {
+        vehDrive.call(this);
+        console.log(&quot; Rolling on all &quot; + this.wheels + &quot;wheels!&quot;);
+    }
+    return car;
+}
+// 因为没事new创建的新对象而是使用返回的car，所以可以直接调用Car();
+//var myCar = Car();
+var myCar = new Car(); 
+myCar.drive(); 
+</code></pre></li>
+</ol>
+<p>#原型继承</p>
+<pre><code>function Foo(name) {
+    this.name = name;
+}
+
+Foo.prototype.myName = function() {
+    return this.name;
+}
+
+function Bar(name, label) {
+    Foo.call(this, name);
+    this.label = label;
+}
+//Bar.prototype 关联到 Foo.prototype
+//调用Object.create()创建一个新对象并把内部的[[prototype]]关联到指定的对象（Foo.prototype）
+Bar.prototype = Object.create(Foo.prototype);
+//ES6直接修改现有的Bar.prototype
+//Object.setPrototypeOf(Bar.prototype, Foo.prototype);
+Bar.prototype.myLabel = function() {
+    return this.label;
+}
+
+var a = new Bar(&apos;a&apos;, &apos;obj a&apos;);
+</code></pre><p><code>Bar.prototype = Foo.prototype</code> 并不会创建一个关联到Bar.prototype的新对象，只是直接引用Foo.prototype对象。因此执行复制语句可能会修改Foo.prototype本身。<br><code>Bar.prototype = new Foo()</code>虽然会创建一个关联到Bar.prototype的新对象，但是他使用的是new Foo()构造函数调用，如果Foo函数有一些副作用可能会影响到Bar()的后代。</p>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/01/28/ES6-mixin/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+
+
+<div class="share_addthis">
+  <div class="sharing addthis_toolbox share">
+    <a class="addthis_button_facebook_like"></a>
+    <a class="addthis_button_tweet"></a>
+    <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-560c64c35486b3d4" async="async"></script>
+</div>
+
+
+
+
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Hero Guo&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

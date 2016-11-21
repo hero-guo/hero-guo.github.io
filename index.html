@@ -56,86 +56,6 @@
   </div>
 </header>
     <section id="main" class="outer">
-      <article id="post-text1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/21/text1/">text1</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/2016/11/21/text1/" class="article-date">
-  <time datetime="2016-11-21T14:26:15.000Z" itemprop="datePublished">2016-11-21</time>
-</a>
-      
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-    
-      <article id="post-Hello-Hexo" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/21/Hello-Hexo/">Hello Hexo</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/2016/11/21/Hello-Hexo/" class="article-date">
-  <time datetime="2016-11-21T10:33:33.000Z" itemprop="datePublished">2016-11-21</time>
-</a>
-      
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-    
       <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -168,6 +88,201 @@
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+      
+    </div>
+    
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+    
+      <article id="post-ECMAScript2015" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    <div class="article-meta">
+      <a href="/2016/01/28/ECMAScript2015/" class="article-date">
+  <time datetime="2016-01-28T04:19:10.000Z" itemprop="datePublished">2016-01-28</time>
+</a>
+      
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ECMAScript-2015-学习记录"><a href="#ECMAScript-2015-学习记录" class="headerlink" title="ECMAScript 2015 学习记录"></a>ECMAScript 2015 学习记录</h1><p>1.新增let命令，用来声明变量，同var类似，但是所声明的变量只在命令所在的代码块有效。不存在变量提升现象。在变量声明之前使用会报错。</p>
+<pre><code>{
+    let a = 1;
+    var b = 1;
+}
+
+//a is not defined
+//b 1
+</code></pre>
+      
+    </div>
+    
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+    
+      <article id="post-ES6-mixin" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    <div class="article-meta">
+      <a href="/2016/01/28/ES6-mixin/" class="article-date">
+  <time datetime="2016-01-28T04:19:10.000Z" itemprop="datePublished">2016-01-28</time>
+</a>
+      
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#ES6-MIXIN</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"> //通过class实现混入</div><div class="line">//extends 可以继承动态构造的类</div><div class="line">const Mixin = Sup =&gt; class extends Sup &#123;</div><div class="line">    //构造方法</div><div class="line">    //this关键字则代表实例对象</div><div class="line">    constructor(...args) &#123;</div><div class="line">        //（1）作为函数调用时（即super(...args)），super代表父类的构造函数。</div><div class="line">        //（2）作为对象调用时（即super.prop或super.method()），super代表父类。注意，此时super即可以引用父类实例的属性和方法，也可以引用父类的静态方法。</div><div class="line">        super(...args);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Widget &#123;</div><div class="line">    constructor(width, height, $elem) &#123;</div><div class="line">        Object.assign(this, &#123;</div><div class="line">            width,</div><div class="line">            height,</div><div class="line">            $elem: null</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">    render($where) &#123;</div><div class="line">         if (this.$elem) &#123;</div><div class="line">             this.$elem.css(&#123;</div><div class="line">             width: this.width + &apos;px&apos;,</div><div class="line">             height: this.height + &apos;px&apos;</div><div class="line">            &#125;).appendTo($where);</div><div class="line">          &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Button extends Mixin(Widget) &#123;</div><div class="line">  constructor(width, height, label)&#123;</div><div class="line">    super(width, height);</div><div class="line">    this.label = label;</div><div class="line">    this.$elem = $(&apos;&lt;button&gt;&apos;).text(this.label);</div><div class="line">  &#125;</div><div class="line">  render($where) &#123;</div><div class="line">    super.render($where);</div><div class="line">    this.$elem.click(this.onClick);</div><div class="line">  &#125;</div><div class="line">  onClick() &#123;</div><div class="line">    console.log(&apos;Button&apos; + this.label + &apos;clicked!&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">const $body = $(document.body) || document.body;</div><div class="line">let btn = new Button(125, 30, &apos;hello world&apos;);</div><div class="line">btn.render($body);</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+    
+      <article id="post-object-prototype" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    <div class="article-meta">
+      <a href="/2016/01/28/object-prototype/" class="article-date">
+  <time datetime="2016-01-28T04:19:10.000Z" itemprop="datePublished">2016-01-28</time>
+</a>
+      
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#类的继承</p>
+<ol>
+<li><p>混合复制</p>
+<pre><code>//复制source对象的属性
+function mixin(source, target) {
+    for (var key in source) {
+        if (!(key in target)) {
+            target[key] = source[key];
+        }
+    }
+    return target;
+}
+
+var Vehicle = {
+    engines: 1,
+    ignition: function() {
+        console.log(&quot; Turning on my forward! &quot;);
+    },
+    drive: function() {
+        this.ignition();
+        console.log(&quot; Steering and moving forward! &quot;);
+    }
+};
+
+//Car复制Vehicle的属性值和函数引用
+var Car = mixin(Vehicle, {
+    wheels: 4,
+    drive: function() {
+    //显示指定Vehicle对象调用dirve方法
+    //如果直接执行Vehicle.dirve()，函数调用中的this就会绑定到Vehicle上，所以使用.call(this)来确保dirve在Car对象的上下文中执行;
+    Vehicle.drive.call(this);
+        console.log(&quot; Rolling on all &quot; + this.wheels + &quot;wheels!&quot;);
+    }
+});
+Car.drive();
+</code></pre></li>
+<li><p>寄生继承<br> 首先复制一份父类（Vehicle），然后混入子类（Car）。然后构建实例。</p>
+<pre><code>//类
+function Vehicle() {
+    this.engines = 1;
+}
+Vehicle.prototype.ignition = function() {
+    console.log(&quot; Turning on my forward! &quot;);
+};
+Vehicle.prototype.drive = function() {
+    this.ignition();
+    console.log(&quot; Steering and moving forward! &quot;);
+};
+
+//寄生类Car
+function Car() {
+    //car 是一个Vehicle
+    var car = new Vehicle();
+
+    car.wheels = 4;
+    //保存Vehicle::drive()的特殊引用
+    var vehDrive = car.drive;
+
+    //重写Vehicle::drive()
+    car.drive = function() {
+        vehDrive.call(this);
+        console.log(&quot; Rolling on all &quot; + this.wheels + &quot;wheels!&quot;);
+    }
+    return car;
+}
+// 因为没事new创建的新对象而是使用返回的car，所以可以直接调用Car();
+//var myCar = Car();
+var myCar = new Car(); 
+myCar.drive(); 
+</code></pre></li>
+</ol>
+<p>#原型继承</p>
+<pre><code>function Foo(name) {
+    this.name = name;
+}
+
+Foo.prototype.myName = function() {
+    return this.name;
+}
+
+function Bar(name, label) {
+    Foo.call(this, name);
+    this.label = label;
+}
+//Bar.prototype 关联到 Foo.prototype
+//调用Object.create()创建一个新对象并把内部的[[prototype]]关联到指定的对象（Foo.prototype）
+Bar.prototype = Object.create(Foo.prototype);
+//ES6直接修改现有的Bar.prototype
+//Object.setPrototypeOf(Bar.prototype, Foo.prototype);
+Bar.prototype.myLabel = function() {
+    return this.label;
+}
+
+var a = new Bar(&apos;a&apos;, &apos;obj a&apos;);
+</code></pre><p><code>Bar.prototype = Foo.prototype</code> 并不会创建一个关联到Bar.prototype的新对象，只是直接引用Foo.prototype对象。因此执行复制语句可能会修改Foo.prototype本身。<br><code>Bar.prototype = new Foo()</code>虽然会创建一个关联到Bar.prototype的新对象，但是他使用的是new Foo()构造函数调用，如果Foo函数有一些副作用可能会影响到Bar()的后代。</p>
 
       
     </div>
