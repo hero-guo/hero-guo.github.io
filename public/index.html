@@ -72,7 +72,7 @@
     
     <div class="article-meta">
       <a href="/2016/11/22/ECMAScript2015/" class="article-date">
-  <time datetime="2016-11-22T04:00:32.000Z" itemprop="datePublished">2016-11-22</time>
+  <time datetime="2016-11-22T05:50:03.000Z" itemprop="datePublished">2016-11-22</time>
 </a>
       
       
@@ -110,6 +110,48 @@
 
 
     
+      <article id="post-ES6-mixin" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/22/ES6-mixin/">ES6-MIXIN</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/11/22/ES6-mixin/" class="article-date">
+  <time datetime="2016-11-22T05:50:03.000Z" itemprop="datePublished">2016-11-22</time>
+</a>
+      
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#ES6-MIXIN</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"> //通过class实现混入</div><div class="line">//extends 可以继承动态构造的类</div><div class="line">const Mixin = Sup =&gt; class extends Sup &#123;</div><div class="line">    //构造方法</div><div class="line">    //this关键字则代表实例对象</div><div class="line">    constructor(...args) &#123;</div><div class="line">        //（1）作为函数调用时（即super(...args)），super代表父类的构造函数。</div><div class="line">        //（2）作为对象调用时（即super.prop或super.method()），super代表父类。注意，此时super即可以引用父类实例的属性和方法，也可以引用父类的静态方法。</div><div class="line">        super(...args);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Widget &#123;</div><div class="line">    constructor(width, height, $elem) &#123;</div><div class="line">        Object.assign(this, &#123;</div><div class="line">            width,</div><div class="line">            height,</div><div class="line">            $elem: null</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">    render($where) &#123;</div><div class="line">         if (this.$elem) &#123;</div><div class="line">             this.$elem.css(&#123;</div><div class="line">             width: this.width + &apos;px&apos;,</div><div class="line">             height: this.height + &apos;px&apos;</div><div class="line">            &#125;).appendTo($where);</div><div class="line">          &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Button extends Mixin(Widget) &#123;</div><div class="line">  constructor(width, height, label)&#123;</div><div class="line">    super(width, height);</div><div class="line">    this.label = label;</div><div class="line">    this.$elem = $(&apos;&lt;button&gt;&apos;).text(this.label);</div><div class="line">  &#125;</div><div class="line">  render($where) &#123;</div><div class="line">    super.render($where);</div><div class="line">    this.$elem.click(this.onClick);</div><div class="line">  &#125;</div><div class="line">  onClick() &#123;</div><div class="line">    console.log(&apos;Button&apos; + this.label + &apos;clicked!&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">const $body = $(document.body) || document.body;</div><div class="line">let btn = new Button(125, 30, &apos;hello world&apos;);</div><div class="line">btn.render($body);</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+    
       <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -118,15 +160,15 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/21/hello-world/">Hello World</a>
+      <a class="article-title" href="/2016/11/22/hello-world/">Hello World</a>
     </h1>
   
 
       </header>
     
     <div class="article-meta">
-      <a href="/2016/11/21/hello-world/" class="article-date">
-  <time datetime="2016-11-21T10:19:35.000Z" itemprop="datePublished">2016-11-21</time>
+      <a href="/2016/11/22/hello-world/" class="article-date">
+  <time datetime="2016-11-22T05:50:03.000Z" itemprop="datePublished">2016-11-22</time>
 </a>
       
       
@@ -159,48 +201,6 @@
 
 
     
-      <article id="post-ES6-mixin" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/28/ES6-mixin/">ES6-MIXIN</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/2016/01/28/ES6-mixin/" class="article-date">
-  <time datetime="2016-01-28T04:19:10.000Z" itemprop="datePublished">2016-01-28</time>
-</a>
-      
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#ES6-MIXIN</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"> //通过class实现混入</div><div class="line">//extends 可以继承动态构造的类</div><div class="line">const Mixin = Sup =&gt; class extends Sup &#123;</div><div class="line">    //构造方法</div><div class="line">    //this关键字则代表实例对象</div><div class="line">    constructor(...args) &#123;</div><div class="line">        //（1）作为函数调用时（即super(...args)），super代表父类的构造函数。</div><div class="line">        //（2）作为对象调用时（即super.prop或super.method()），super代表父类。注意，此时super即可以引用父类实例的属性和方法，也可以引用父类的静态方法。</div><div class="line">        super(...args);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Widget &#123;</div><div class="line">    constructor(width, height, $elem) &#123;</div><div class="line">        Object.assign(this, &#123;</div><div class="line">            width,</div><div class="line">            height,</div><div class="line">            $elem: null</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">    render($where) &#123;</div><div class="line">         if (this.$elem) &#123;</div><div class="line">             this.$elem.css(&#123;</div><div class="line">             width: this.width + &apos;px&apos;,</div><div class="line">             height: this.height + &apos;px&apos;</div><div class="line">            &#125;).appendTo($where);</div><div class="line">          &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Button extends Mixin(Widget) &#123;</div><div class="line">  constructor(width, height, label)&#123;</div><div class="line">    super(width, height);</div><div class="line">    this.label = label;</div><div class="line">    this.$elem = $(&apos;&lt;button&gt;&apos;).text(this.label);</div><div class="line">  &#125;</div><div class="line">  render($where) &#123;</div><div class="line">    super.render($where);</div><div class="line">    this.$elem.click(this.onClick);</div><div class="line">  &#125;</div><div class="line">  onClick() &#123;</div><div class="line">    console.log(&apos;Button&apos; + this.label + &apos;clicked!&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">const $body = $(document.body) || document.body;</div><div class="line">let btn = new Button(125, 30, &apos;hello world&apos;);</div><div class="line">btn.render($body);</div></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-    
       <article id="post-markdown" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -209,15 +209,15 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/28/markdown/">Markdown 语法</a>
+      <a class="article-title" href="/2016/11/22/markdown/">Markdown 语法</a>
     </h1>
   
 
       </header>
     
     <div class="article-meta">
-      <a href="/2016/01/28/markdown/" class="article-date">
-  <time datetime="2016-01-28T04:19:10.000Z" itemprop="datePublished">2016-01-28</time>
+      <a href="/2016/11/22/markdown/" class="article-date">
+  <time datetime="2016-11-22T05:50:03.000Z" itemprop="datePublished">2016-11-22</time>
 </a>
       
       
@@ -428,15 +428,15 @@ var Mou = exactlyTheAppIwant;
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/28/object-prototype/">类的继承</a>
+      <a class="article-title" href="/2016/11/22/object-prototype/">类的继承</a>
     </h1>
   
 
       </header>
     
     <div class="article-meta">
-      <a href="/2016/01/28/object-prototype/" class="article-date">
-  <time datetime="2016-01-28T04:19:10.000Z" itemprop="datePublished">2016-01-28</time>
+      <a href="/2016/11/22/object-prototype/" class="article-date">
+  <time datetime="2016-11-22T05:50:03.000Z" itemprop="datePublished">2016-11-22</time>
 </a>
       
       
