@@ -9,8 +9,8 @@ out
 gen
 Would skip repository .deploy_git/
 .idea/
-#public/
+public/
 .deploy_git/
-#db.json
+db.json
 
 Would skip repository themes/minos/
