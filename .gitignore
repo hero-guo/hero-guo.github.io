@@ -11,4 +11,6 @@ Would skip repository .deploy_git/
 .idea/
 public/
 .deploy_git/
+dp.json
+
 Would skip repository themes/minos/
