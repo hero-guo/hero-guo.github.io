@@ -1,8 +1,7 @@
 ---
 title: ES6-MIXIN
+categories: categories
 ---
-
-#ES6-MIXIN
 
 ```
 	    //通过class实现混入

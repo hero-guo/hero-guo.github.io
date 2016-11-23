@@ -1,8 +1,7 @@
 ---
 title: Markdown 语法
+categories: categories
 ---
-
-# Markdown 语法
 
 `加粗`	**加粗**
 
@@ -16,7 +15,7 @@ title: Markdown 语法
 
 	>引用
 
-
+<!-- more -->
 `链接`	[链接](http://www.example.com)
 
 	[链接](http://www.example.com)
