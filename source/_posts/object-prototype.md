@@ -3,6 +3,7 @@ title: 类的继承
 categories: categories
 ---
 
+### 类的继承
 1. 混合复制
 
 		//复制source对象的属性
@@ -75,7 +76,7 @@ categories: categories
 		myCar.drive();
 
 
-###原型继承
+### 原型继承
 
 
 	function Foo(name) {
