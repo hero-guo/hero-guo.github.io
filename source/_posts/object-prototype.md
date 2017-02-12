@@ -1,9 +1,9 @@
 ---
 title: 类的继承
 categories: categories
+date: 2017-02-12 14:57:15
 ---
 
-### 类的继承
 1. 混合复制
 
 		//复制source对象的属性
