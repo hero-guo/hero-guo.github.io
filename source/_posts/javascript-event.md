@@ -15,9 +15,11 @@ categories:
 3. DOM事件流：同时支持两种事件模型：捕获型事件和冒泡型事件，但是，捕获型事件先发生。两种事件流会触及DOM中的所有对象，从document对象开始，也在document对象结束。
   DOM事件模型最独特的性质是，文本节点也触发事件(在IE中不会)。
 <!-- more -->
-    <div>
-      <p></p>
-    </div>
+```html
+<div>
+  <p></p>
+</div>  
+```
 这两个元素都绑定了click事件，如果用户点击了p，它在div和p上都触发了click事件，那这两个事件处理程序哪个先执行呢？事件顺序是什么？
 ##### 事件捕获
 当你使用事件捕获时，父级元素先触发，子级元素后触发，即div先触发，p后触发。
@@ -33,13 +35,13 @@ false=冒泡
 
 ##### IE
 IE只支持事件冒泡，不支持事件捕获，它也不支持addEventListener函数，不会用第三个参数来表示是冒泡还是捕获，它提供了另一个函数attachEvent。
-    
+```javascript
     ele.attachEvent("onclick", doSomething);
-    
+```
 事件冒泡（的过程）：事件从发生的目标（event.srcElement||event.target）开始，沿着文档逐层向上冒泡，到document为止。
 
 至此我们可以封装一下事件绑定的方法：
-
+```javascript
     //事件绑定
     function addEvent(target, type, func) {
       if (target.addEventListener) {
@@ -61,48 +63,49 @@ IE只支持事件冒泡，不支持事件捕获，它也不支持addEventListene
       }
     }
     
-    
-
+```
 ### 事件的传播是可以阻止的：
 阻止事件冒泡
-    
-     if (event.stopPropagation) {
-       event.stopPropagation();
-     } else {
-       event.cancelBubble = true; // 兼容IE
-     }
+```javascript
+ if (event.stopPropagation) {
+   event.stopPropagation();
+ } else {
+   event.cancelBubble = true; // 兼容IE
+ }
+```
 阻止事件的默认行为
-
-    if (event.preventDefault) {
-      event.preventDefault(); 
-    } else {
-      event.returnValue = false; // 兼容IE
-    }
-
+```javascript
+if (event.preventDefault) {
+  event.preventDefault(); 
+} else {
+  event.returnValue = false; // 兼容IE
+}
+```
 ### 事件代理
 事件委托就是利用事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。有点就是可以提高性能。
+```html
+ <ul id='ul'>
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+  <li>4</li>
+</ul>    
     
-    <ul id='ul'>
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
-      <li>4</li>
-    </ul>    
-    
-    <script>
-        var oUl = document.getElementById('ul');
-        addEvent(oUl, 'click', function(ev) {
-          var ev = ev || window.event;
-          var target = ev.target || ev.srcElement;
-          if (targe.nodeName.toLowerCase() === 'li') {
-            console.log(target.innerHTML);
-          }
-        });
-    </script>
+<script>
+    var oUl = document.getElementById('ul');
+    addEvent(oUl, 'click', function(ev) {
+      var ev = ev || window.event;
+      var target = ev.target || ev.srcElement;
+      if (targe.nodeName.toLowerCase() === 'li') {
+        console.log(target.innerHTML);
+      }
+    });
+</script>
+```
 ### JS观察者模式
 这是一种创建松散耦合代码的技术。它定义对象间 一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知。由主体和观察者组成，主体负责发布事件，同时观察者通过订阅这些事件来观察该主体。主体并不知道观察者的任何事情，观察者知道主体并能注册事件的回调函数。
-    
-    var myEvent = (function() {
+```javascript
+var myEvent = (function() {
       var handlers = {};
     
       function on(evt, func) {
@@ -138,3 +141,4 @@ IE只支持事件冒泡，不支持事件捕获，它也不支持addEventListene
         emit: emit,
       };
     })();
+```

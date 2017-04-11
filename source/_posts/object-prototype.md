@@ -70,7 +70,7 @@ date: 2017-02-12 14:57:15
 			}
 			return car;
 		}
-		// 因为没事new创建的新对象而是使用返回的car，所以可以直接调用Car();
+		// 因为没使用new创建的新对象而是使用返回的car，所以可以直接调用Car();
 		//var myCar = Car();
 		var myCar = new Car();
 		myCar.drive();
@@ -93,9 +93,10 @@ date: 2017-02-12 14:57:15
 	}
 	//Bar.prototype 关联到 Foo.prototype
 	//调用Object.create()创建一个新对象并把内部的[[prototype]]关联到指定的对象（Foo.prototype）
-	Bar.prototype = Object.create(Foo.prototype);
 	//ES6直接修改现有的Bar.prototype
-	//Object.setPrototypeOf(Bar.prototype, Foo.prototype);
+  	//Object.setPrototypeOf(Bar.prototype, Foo.prototype);
+	Bar.prototype = Object.create(Foo.prototype);
+    Bar.prototype.constructor = Bar;
 	Bar.prototype.myLabel = function() {
 		return this.label;
 	}

@@ -1,9 +1,10 @@
 ---
 title: ES6-MIXIN
 categories: categories
+date: 2016-12-11 14:57:15
 ---
 
-```
+```javascript
 	    //通过class实现混入
     //extends 可以继承动态构造的类
     const Mixin = Sup => class extends Sup {

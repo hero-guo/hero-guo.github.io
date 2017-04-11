@@ -8,7 +8,7 @@ subtitle: A bird is known by its note, and a man by his talk.
 description: javascript nodejs react
 author: Neil Guo
 email: handsamechina@126.com
-language: zh-Hans
+language: en
 timezone:
 
 # URL
@@ -64,7 +64,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: minos
+theme: hueman
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
