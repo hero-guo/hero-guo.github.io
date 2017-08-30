@@ -1,8 +1,10 @@
 ---
 title: 充分理解闭包
 date: 2017-02-12 14:57:15
-tags:
-categories:
+tags: 
+  - JavaScript
+  - 闭包
+categories: Notes
 ---
 ### 闭包定义
 * 函数定义时的作用域链到函数执行时依然有效

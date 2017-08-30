@@ -1,8 +1,10 @@
 ---
 title: javascript 事件详解
 date: 2017-02-13 11:17:33
-tags:
-categories:
+tags: 
+  - JavaScript
+  - 事件
+categories: JavaScript
 ---
 ### 事件冒泡与捕获
 

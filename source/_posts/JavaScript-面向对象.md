@@ -1,8 +1,8 @@
 ---
 title: JavaScript 面向对象
 date: 2017-04-11 11:05:34
-tags:
-categories:
+tags: JavaScript
+categories: JavaScript
 ---
 ### 构造函数
 构造函数也是一个函数，通过new运算符可以生成一份实例同时把this绑定到实例上。JavaScript规定，每一个构造函数都有一个prototype属性，指向另一个对象。这个对象的所有属性和方法，都会被构造函数的实例继承。

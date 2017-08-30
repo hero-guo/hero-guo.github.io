@@ -1,7 +1,10 @@
 ---
 title: ES6-MIXIN
-categories: categories
 date: 2016-12-11 14:57:15
+tags: 
+  - JavaScript
+  - ES6
+categories: JavaScript
 ---
 
 ```javascript

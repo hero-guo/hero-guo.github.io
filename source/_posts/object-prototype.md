@@ -1,7 +1,10 @@
 ---
 title: 类的继承
-categories: categories
 date: 2017-02-12 14:57:15
+tags:
+  - JavaScript
+  - 继承
+categories: JavaScript
 ---
 
 1. 混合复制
