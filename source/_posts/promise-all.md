@@ -4,7 +4,6 @@ date: 2017-03-13 21:15:15
 tags:
 categories: JavaScript
 ---
-
 通常处理多个请求的时候我们会用Promise.all()方法。该方法指当所有在可迭代参数中的 promises 已完成，或者第一个传递的 promise（指 reject）失败时，返回 promise。但是当其中任何一个被拒绝的话。主Promise.all([..])就会立即被拒绝，并丢弃来自其他所有promis的全部结果。
 <!-- more -->
 ```javascript
