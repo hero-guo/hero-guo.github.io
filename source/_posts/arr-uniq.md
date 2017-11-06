@@ -12,14 +12,14 @@ categories: JavaScript
 ```javascript
 const array = [ 1, 1, 'a', 'a' ];
 function uniq(arr) {
- return arr.filter((v, i) => arr.indexOf(v) === i);
+  return arr.filter((v, i) => arr.indexOf(v) === i);
 }
 console.log(uniq(array)); //=> [1, 'a']
 ```
 ```javascript
 const array = [ 1, 1, 'a', 'a' ];
 function uniq(arr) {
- return Array.from(new Set(arr));
+  return Array.from(new Set(arr));
 //return [...new Set(arr)]; 
 }
 console.log(uniq(array)); //=> [1, 'a']
