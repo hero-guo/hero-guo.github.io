@@ -1,5 +1,5 @@
 ---
-title: javascript 事件详解
+title: JavaScript 事件详解
 date: 2017-02-13 11:17:33
 tags: 
   - JavaScript
