@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    
+    <title>在 React 项目中使用 Redux 和 Redux-Saga | Neil&#39;s site</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="JavaScript,React,Redux,Redux-Saga">
+    
+    <meta name="description" content="关于 React 的数据管理库现在社区有很多解决方案，Mobx，Redux，RxJs等。关于他们的优劣与适合的场景网上有很多讨论。本文主要介绍 Redux 与 Redux MiddleWare 。">
+<meta name="keywords" content="JavaScript,React,Redux,Redux-Saga">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 React 项目中使用 Redux 和 Redux-Saga">
+<meta property="og:url" content="http://hero-guo.com/2018/12/02/在-React-项目中使用-Redux-和-Redux-Saga/index.html">
+<meta property="og:site_name" content="Neil&#39;s site">
+<meta property="og:description" content="关于 React 的数据管理库现在社区有很多解决方案，Mobx，Redux，RxJs等。关于他们的优劣与适合的场景网上有很多讨论。本文主要介绍 Redux 与 Redux MiddleWare 。">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-12-02T13:56:17.239Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在 React 项目中使用 Redux 和 Redux-Saga">
+<meta name="twitter:description" content="关于 React 的数据管理库现在社区有很多解决方案，Mobx，Redux，RxJs等。关于他们的优劣与适合的场景网上有很多讨论。本文主要介绍 Redux 与 Redux MiddleWare 。">
+    
+
+    
+        <link rel="alternate" href="atom.xml" title="Neil&#39;s site" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-105575492-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">A bird is known by its note, and a man by his talk.</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/categories/JavaScript">JavaScript</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/categories/Notes">Notes</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/JavaScript/">JavaScript</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-在-React-项目中使用-Redux-和-Redux-Saga" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        在 React 项目中使用 Redux 和 Redux-Saga
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/12/02/在-React-项目中使用-Redux-和-Redux-Saga/" class="article-date">
+            <time datetime="2018-12-02T13:52:32.000Z" itemprop="datePublished">2018-12-02</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>, <a class="tag-link" href="/tags/React/">React</a>, <a class="tag-link" href="/tags/Redux/">Redux</a>, <a class="tag-link" href="/tags/Redux-Saga/">Redux-Saga</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>关于 React 的数据管理库现在社区有很多解决方案，<a href="https://mobx.js.org/" target="_blank" rel="noopener">Mobx</a>，<a href="https://redux.js.org/" target="_blank" rel="noopener">Redux</a>，<a href="https://rxjs-dev.firebaseapp.com/" target="_blank" rel="noopener">RxJs</a>等。关于他们的优劣与适合的场景网上有很多讨论。本文主要介绍 Redux 与 Redux MiddleWare 。<br><a id="more"></a></p>
+<h5 id="何时需要使用-Redux"><a href="#何时需要使用-Redux" class="headerlink" title="何时需要使用 Redux"></a>何时需要使用 Redux</h5><ol>
+<li>多层级组件之间需要共享数据</li>
+<li>应用状态嵌套层级很深</li>
+<li>期望使用单一数据流</li>
+</ol>
+<h5 id="Redux-核心概念"><a href="#Redux-核心概念" class="headerlink" title="Redux 核心概念"></a>Redux 核心概念</h5><p>使用普通对象描述应用程序的状态，强制将状态的更改描述为一个操作，每次操作由一个动作 <code>action</code> 触发。通过 <code>reducer</code> 函数将动作和状态联系起来。</p>
+<p>Redux的实现有三大基本原则：</p>
+<ol>
+<li>单一数据源</li>
+<li>State 是只读的</li>
+<li>使用纯函数来执行修改</li>
+</ol>
+<h4 id="Redux-使用"><a href="#Redux-使用" class="headerlink" title="Redux 使用"></a>Redux 使用</h4><p>Redux 的源码很少，使用起来也很简单，比较难理解的是它的中间件思想。</p>
+<p>1.安装</p>
+   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save redux react-redux redux-saga</span><br></pre></td></tr></table></figure>
+<p>2.使用 <code>create-react-app</code> 创建项目之后，创建 store 文件夹</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// store 文件夹</span><br><span class="line">├── index.js</span><br><span class="line">├── middleware</span><br><span class="line">│   ├── index.js</span><br><span class="line">├── reducers</span><br><span class="line">│   ├── index.js</span><br><span class="line">└── sagas</span><br><span class="line">    ├── index.js</span><br></pre></td></tr></table></figure>
+<p>3.创建 store</p>
+   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//store/index.js</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @导出全局 store 基于 redux-sage</span></span><br><span class="line"><span class="comment"> * @format</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// redux-devtools-extension 可以在浏览器里面查看 store 的状态</span></span><br><span class="line"><span class="keyword">import</span> &#123; applyMiddleware, createStore &#125; <span class="keyword">from</span> <span class="string">'redux'</span></span><br><span class="line"><span class="keyword">import</span> &#123; composeWithDevTools &#125; <span class="keyword">from</span> <span class="string">'redux-devtools-extension/logOnlyInProduction'</span></span><br><span class="line"><span class="keyword">import</span> &#123; localStore &#125; <span class="keyword">from</span> <span class="string">'helpers'</span> <span class="comment">// localStorage 的封装</span></span><br><span class="line"><span class="keyword">import</span> &#123; sageMiddleware &#125; <span class="keyword">from</span> <span class="string">'./middleware'</span></span><br><span class="line"><span class="keyword">import</span> rootSaga <span class="keyword">from</span> <span class="string">'./sagas'</span></span><br><span class="line"><span class="keyword">import</span> rootReducer <span class="keyword">from</span> <span class="string">'./reducers'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> middlewares = [sageMiddleware]</span><br><span class="line"><span class="keyword">const</span> composeEnhancers = composeWithDevTools(&#123;</span><br><span class="line">  <span class="comment">// redux-devtools-extension 的一些配置。一般情况不需要配置</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 如果需要从本地获取数据同步到 store 里面</span></span><br><span class="line"><span class="keyword">const</span> xxx = localStore.get(<span class="string">'xxx'</span>) || &#123;&#125; <span class="comment">// 获取本地数据</span></span><br><span class="line"><span class="keyword">const</span> store = createStore(</span><br><span class="line">  rootReducer, <span class="comment">// redux 数据处理函数</span></span><br><span class="line">  xxx, <span class="comment">// 初始化数据，可以不填</span></span><br><span class="line">  composeEnhancers( <span class="comment">// redux 中间件 增强 redux 的数据处理能力</span></span><br><span class="line">    applyMiddleware(...middlewares)</span><br><span class="line">  )</span><br><span class="line">)</span><br><span class="line">store.runSage = sageMiddleware.run</span><br><span class="line">store.runSage(rootSaga) <span class="comment">// 动态地运行 saga</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleChange</span>(<span class="params"></span>) </span>&#123; <span class="comment">// redux 被触发的监听函数</span></span><br><span class="line">  <span class="comment">// 存储 store 数据到本地缓存</span></span><br><span class="line">  <span class="keyword">const</span> state = store.getState() <span class="comment">// 获取当前 store 里面的全部数据</span></span><br><span class="line">  localStore.set(<span class="string">'xxx'</span>, state) <span class="comment">// 存储到 localStorage</span></span><br><span class="line">&#125;</span><br><span class="line">store.subscribe(handleChange)</span><br><span class="line"><span class="comment">// Enable Webpack hot module replacement for reducers</span></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">module</span>.hot) &#123; <span class="comment">// webpack 热更新时候同步 redux</span></span><br><span class="line">  <span class="built_in">module</span>.hot.accept(<span class="string">'./reducers'</span>, () =&gt; &#123;</span><br><span class="line">    store.replaceReducer(<span class="built_in">require</span>(<span class="string">'./reducers/index'</span>).default)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store</span><br></pre></td></tr></table></figure>
+<p>4.创建 reducer</p>
+   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// store/reducers/index.js</span></span><br><span class="line"><span class="comment">// combineReducers 是一个高阶函数。主要作用是合并多个 reducer</span></span><br><span class="line"><span class="keyword">import</span> &#123; combineReducers &#125; <span class="keyword">from</span> <span class="string">'redux'</span></span><br><span class="line"><span class="keyword">import</span> todo <span class="keyword">from</span> <span class="string">'./todo'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> combineReducers(&#123; todo &#125;)</span><br></pre></td></tr></table></figure>
+   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// store/reducers/todo.js</span></span><br><span class="line"><span class="comment">// 定义 action</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> ADD_TODO_PENDDING = <span class="string">'todo/ADD_TODO_PENDDING'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> ADD_TODO_SUCCEEDED = <span class="string">'todo/ADD_TODO_SUCCEEDED'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> ADD_TODO_FAILURED = <span class="string">'todo/ADD_TODO_FAILURED'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> initialState = &#123; <span class="comment">// 传入初始化 state</span></span><br><span class="line">  todos: [],</span><br><span class="line">  loading: <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 根据 action.type 处理 state，不能修改 state，可以使用 Object.assing() 或者 展开运算符 &#123;...state&#125; 生成一个副本</span></span><br><span class="line"><span class="comment">// 只要传入参数相同，返回计算得到的下一个 state 就一定相同。没有特殊情况、没有副作用，没有 API 请求、没有变量修改，单纯执行计算。</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">reducer</span>(<span class="params">state = initialState, action = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; payload &#125; = action</span><br><span class="line">  <span class="keyword">switch</span> (action.type) &#123;</span><br><span class="line">    <span class="keyword">case</span> ADD_TODO_PENDDING:</span><br><span class="line">      <span class="keyword">return</span> &#123; ...state &#125;</span><br><span class="line">    <span class="keyword">case</span> ADD_TODO_SUCCEEDED:</span><br><span class="line">      <span class="keyword">return</span> &#123; ...state, <span class="attr">todos</span>: payload, <span class="attr">loading</span>: <span class="literal">false</span> &#125;</span><br><span class="line">    <span class="keyword">case</span> ADD_TODO_FAILURE:</span><br><span class="line">      <span class="keyword">return</span> &#123; ...state, <span class="attr">loading</span>: <span class="literal">false</span> &#125;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">return</span> state</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5.创建 sagas</p>
+   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// store/sagas/index.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; all, fork &#125; <span class="keyword">from</span> <span class="string">'redux-saga/effects'</span></span><br><span class="line"><span class="keyword">import</span> todo <span class="keyword">from</span> <span class="string">'./todo'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span>* <span class="title">root</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> all([fork(todo)])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// store/sagas/todo.js</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> actionTypes <span class="keyword">from</span> <span class="string">'../reducers/todo'</span></span><br><span class="line"><span class="keyword">import</span> &#123; $request &#125; <span class="keyword">from</span> <span class="string">'helpers'</span> <span class="comment">// 基于 axios 封装的请求方法</span></span><br><span class="line"><span class="keyword">import</span> &#123; call, put &#125; <span class="keyword">from</span> <span class="string">'redux-saga/effects'</span></span><br><span class="line"><span class="keyword">import</span> &#123; takeLatest &#125; <span class="keyword">from</span> <span class="string">'redux-saga'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">addTodo</span>(<span class="params">action</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; data &#125; = <span class="keyword">yield</span> call(<span class="function"><span class="params">()</span> =&gt;</span> $request.post(<span class="string">'/addTodo'</span>, action))</span><br><span class="line">    <span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: actionTypes.ADD_TODO_SUCCEEDED, <span class="attr">payload</span>: data &#125;)</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: actionTypes.ADD_TODO_FAILURED&#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span>* <span class="title">saga</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span>* takeLatest(actionTypes.ADD_TODO_PENDDING, addTodo)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>6.连接 React 和 Redux</p>
+   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/routes</span></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> &#123; Provider &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span></span><br><span class="line"><span class="keyword">import</span> &#123; BrowserRouter, Route, Switch &#125; <span class="keyword">from</span> <span class="string">'react-router-dom'</span></span><br><span class="line"><span class="keyword">import</span> Loadable <span class="keyword">from</span> <span class="string">'react-loadable'</span></span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">'./store'</span></span><br><span class="line"><span class="keyword">import</span> &#123; NoMatch, Loading &#125; <span class="keyword">from</span> <span class="string">'components'</span></span><br><span class="line"><span class="keyword">const</span> AddTodo = Loadable(&#123;</span><br><span class="line">  loader: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./container/AddTodo'</span>),</span><br><span class="line">  loading: Loading</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Routes</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;Provider store=&#123;store&#125;&gt; <span class="comment">// 传递 store</span></span><br><span class="line">      &lt;BrowserRouter&gt;</span><br><span class="line">        &lt;Switch&gt;</span><br><span class="line">		  &lt;Route path=<span class="string">"/"</span> component=&#123;App&#125; /&gt;</span><br><span class="line">          &lt;Route path=<span class="string">"/add"</span> component=&#123;AddTodo&#125; /&gt;</span><br><span class="line">          &lt;Route component=&#123;NoMatch&#125; /&gt;</span><br><span class="line">        &lt;<span class="regexp">/Switch&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>BrowserRouter&gt;</span><br><span class="line">    &lt;<span class="regexp">/Provider&gt;</span></span><br><span class="line"><span class="regexp">  )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/index.js</span></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'./style/antd.less'</span></span><br><span class="line"><span class="keyword">import</span> Routes <span class="keyword">from</span> <span class="string">'./routes'</span></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">Routes</span> /&gt;</span>, document.getElementById('root'))</span></span><br></pre></td></tr></table></figure>
+<p>7.触发 action</p>
+   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// container/AddTodo.js</span></span><br><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> actionTypes <span class="keyword">from</span> <span class="string">'../store/reducers/todo'</span></span><br><span class="line">@connect(&#123; state =&gt; &#123; <span class="attr">data</span>: state.todo &#125; &#125;)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AddTodo</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    handleAdd = <span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 触发 redux 的 action</span></span><br><span class="line">        <span class="keyword">this</span>.props.dispatch(&#123;<span class="attr">type</span>: actionTypes.ADD_TODO_PENDDING, data &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="comment">// 省略布局实现</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Redux-的中间件"><a href="#Redux-的中间件" class="headerlink" title="Redux 的中间件"></a>Redux 的中间件</h4><p>Redux 里的 <code>createStore(reducer, [preloadedState], enhancer)</code> 第三个参数就是传入的中间件，第二个参数是可选的，如果不传，第二个参数就是中间件。主要的作用是提供 action 被发起之后，到达 reducer 之前的扩展点。可以记录每次 action 被触发的日志<code>redux-logger</code>，可以添加浏览器扩展<code>redux-devtools-extension</code> 。我们经常是用的功能是增强 action 的能力，因为 action 被定义为一个对象，原始情况下只能处理同步操作。通过添加中间件，我们可以传递一个发送网络请求的 action。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// redux thunk</span></span><br><span class="line"><span class="keyword">const</span> thunk = <span class="function"><span class="params">store</span> =&gt;</span> next =&gt; <span class="function"><span class="params">action</span> =&gt;</span></span><br><span class="line">  <span class="keyword">typeof</span> action === <span class="string">'function'</span> ?</span><br><span class="line">    action(store.dispatch, store.getState) :</span><br><span class="line">    next(action)</span><br></pre></td></tr></table></figure>
+<h4 id="Redux-Saga"><a href="#Redux-Saga" class="headerlink" title="Redux-Saga"></a>Redux-Saga</h4><p>Redux 的增强 action 使其具有网络请求能力的中间件有很多种 <code>redux-thunk</code> <code>redux-promise</code> <code>redux-saga</code> <code>redux-observable</code> 等。各有优劣，这里主要讲一下比较流行的 <code>redux-saga</code>。</p>
+<p><code>redux-saga</code>是一个旨在处理应用程序的副作用（网络请求，用户事件，浏览器缓存等），使其更容易管理，更容易测试的库。上面的代码里面已经展现了它的基本使用方法，这里我们主要讲一下它的基本原理。</p>
+<p><code>redux-saga</code> 是基于 ES6的新特性 <code>Generators</code> 实现的。它内部实现了很多辅助函数，这些辅助函数用于处理 action。 对于一个网络请求我们默认会有三种状态，类似于 Promise，<code>PENDDING</code>，<code>FULFILLED</code>，<code>REJECTED</code>。也就是说一次完整的请求我们需要设置三种类型的 action。</p>
+<p>常用的一些辅助方法有</p>
+<ul>
+<li><code>call(fn, ...args)</code> 发送一个请求，第一个参数是一个函数，期望返回一个 <code>promise</code>，同步调用，等待调用的返回</li>
+<li><code>fork(fn, ...args)</code> 同 <code>call</code> 使用方法相似，只是它<strong>非阻塞调用</strong> 的形式执行 <code>fn</code></li>
+<li><code>put(action)</code> 类是与 redux 的 dispatch 函数，主要作用是触发一个 action</li>
+<li><code>take(pattern)</code> 是最基本的一个方法，很多高级的方法都是基于他实现的。主要作用是在action 触发之前 <code>Generators</code> 函数是暂停的。</li>
+<li><code>select(selector, ...args)</code> 选择当前 store 里面的 state</li>
+<li><code>takeEvery(pattern, saga, ...args)</code>  <code>take</code> 的高级应用，监听 action 的触发，每次触发都会执行一次<code>pattern</code></li>
+<li><code>takeLatest(pattern, saga, ...args)</code> 与 <code>takeEvery</code>相似， 每次触发都会执行 <code>pattern</code>，但是他会取消上一次执行中的 <code>saga</code></li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+      
+    <div class="fb-comments" data-width="100%" data-href="http://hero-guo.com/2018/12/02/在-React-项目中使用-Redux-和-Redux-Saga/" data-num-posts="5"></div>
+
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="https://twitter.com/handsamechina" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/guangyu.guo.3" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/hero-guo" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/327156566" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/atom.xml" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/07/11/javascript事件循环探索/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">JavaScript事件循环探索</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/02/在-React-项目中使用-Redux-和-Redux-Saga/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2018/12/02/在-React-项目中使用-Redux-和-Redux-Saga/" class="title">在 React 项目中使用 Redux 和 Redux-Saga</a></p>
+                            <p class="item-date"><time datetime="2018-12-02T13:52:32.000Z" itemprop="datePublished">2018-12-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/07/11/javascript事件循环探索/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2018/07/11/javascript事件循环探索/" class="title">JavaScript事件循环探索</a></p>
+                            <p class="item-date"><time datetime="2018-07-11T13:28:57.000Z" itemprop="datePublished">2018-07-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/02/05/扩展原生Number/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Notes/">Notes</a></p>
+                            <p class="item-title"><a href="/2018/02/05/扩展原生Number/" class="title">扩展原生Number</a></p>
+                            <p class="item-date"><time datetime="2018-02-05T14:46:27.000Z" itemprop="datePublished">2018-02-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/02/05/使用commitlint规范git提交/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Notes/">Notes</a></p>
+                            <p class="item-title"><a href="/2018/02/05/使用commitlint规范git提交/" class="title">使用commitlint规范git提交</a></p>
+                            <p class="item-date"><time datetime="2018-02-05T14:06:11.000Z" itemprop="datePublished">2018-02-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/12/17/前端发展史/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/63918611gw1e7ehutyrrnj20hz076dg8.jpg)" alt="前端发展史" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Notes/">Notes</a></p>
+                            <p class="item-title"><a href="/2017/12/17/前端发展史/" class="title">前端发展史</a></p>
+                            <p class="item-date"><time datetime="2017-12-17T07:04:20.000Z" itemprop="datePublished">2017-12-17</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redux/">Redux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redux-Saga/">Redux-Saga</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事件/">事件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事件循环/">事件循环</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据去重/">数据去重</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/柯里化/">柯里化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/继承/">继承</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闭包/">闭包</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/ES6/" style="font-size: 15px;">ES6</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/Redux/" style="font-size: 10px;">Redux</a> <a href="/tags/Redux-Saga/" style="font-size: 10px;">Redux-Saga</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/事件/" style="font-size: 10px;">事件</a> <a href="/tags/事件循环/" style="font-size: 10px;">事件循环</a> <a href="/tags/数据去重/" style="font-size: 10px;">数据去重</a> <a href="/tags/数据结构与算法/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/柯里化/" style="font-size: 10px;">柯里化</a> <a href="/tags/继承/" style="font-size: 10px;">继承</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 Neil Guo</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en/sdk.js#xfbml=1&version=v2.8";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

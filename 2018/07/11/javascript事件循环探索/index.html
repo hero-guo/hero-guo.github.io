@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     
     <title>JavaScript事件循环探索 | Neil&#39;s site</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="JavaScript,事件循环" />
+        <meta name="keywords" content="JavaScript,事件循环">
     
     <meta name="description" content="一直对js的事件循环不是很清晰，最近看了JavaScript忍者秘籍的第13章后，有了一些感悟，特此总结一下，分享给大家。 单线程众所周知，JavaScript是单线程执行模型，同一时刻只能执行一个代码片段，一个任务开始后知道运行完成，不会被其他任务中断。当一个任务花费的时间很长的话，用户就会明显的感觉到卡顿。浏览器为了解决这个问题引入了事件循环的概念（Event Loop）。 事件循环事件循环具">
 <meta name="keywords" content="JavaScript,事件循环">
@@ -23,11 +23,11 @@
     
 
     
-        <link rel="alternate" href="atom.xml" title="Neil&#39;s site" type="application/atom+xml" />
+        <link rel="alternate" href="atom.xml" title="Neil&#39;s site" type="application/atom+xml">
     
 
     
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico">
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -59,7 +59,7 @@ ga('send', 'pageview');
     
 
 </head>
-
+</html>
 <body>
     <div id="wrap">
         <header id="header">
@@ -81,19 +81,19 @@ ga('send', 'pageview');
                     <div class="nav-container-inner">
                         <ul id="main-nav">
                             
-                                <li class="main-nav-list-item" >
+                                <li class="main-nav-list-item">
                                     <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
-                                <li class="main-nav-list-item" >
+                                <li class="main-nav-list-item">
                                     <a class="main-nav-list-link" href="/categories/JavaScript">JavaScript</a>
                                 </li>
                             
-                                <li class="main-nav-list-item" >
+                                <li class="main-nav-list-item">
                                     <a class="main-nav-list-link" href="/categories/Notes">Notes</a>
                                 </li>
                             
-                                <li class="main-nav-list-item" >
+                                <li class="main-nav-list-item">
                                     <a class="main-nav-list-link" href="/about/index.html">About</a>
                                 </li>
                             
@@ -102,14 +102,14 @@ ga('send', 'pageview');
                             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <input type="text" class="ins-search-input" placeholder="Type something...">
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -154,7 +154,7 @@ ga('send', 'pageview');
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-javascript事件循环探索" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-javascript事件循环探索" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
@@ -193,11 +193,11 @@ ga('send', 'pageview');
 <li>宏任务代表一个个离散、独立的工作单元，运行完之后，浏览器可以继续其他的调度。包括：创建文档对象，解析HTML，执行JavaScript，以及各种事件……</li>
 <li>微任务是更小的任务，主要用户更新应用程序的状态，必须在浏览器任务继续执行其他任务之前执行。微任务需要尽可能快地通过异步方式执行，同时不能产生全新的微任务。包括promise、回调函数、DOM发生变化……</li>
 </ol>
-<h4 id="仅包含宏任务"><a href="#仅包含宏任务" class="headerlink" title="仅包含宏任务"></a>仅包含宏任务</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 主线程JavaScript运行15ms</span></div><div class="line">btn1.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;运行 <span class="number">8</span>ms&#125;, <span class="literal">false</span>);</div><div class="line">btn2.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;运行 <span class="number">5</span>ms&#125;, <span class="literal">false</span>);</div></pre></td></tr></table></figure>
+<h4 id="仅包含宏任务"><a href="#仅包含宏任务" class="headerlink" title="仅包含宏任务"></a>仅包含宏任务</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 主线程JavaScript运行15ms</span></span><br><span class="line">btn1.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;运行 <span class="number">8</span>ms&#125;, <span class="literal">false</span>);</span><br><span class="line">btn2.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;运行 <span class="number">5</span>ms&#125;, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
 <p>​    现在假设主线程运行15ms， 在第5ms单击btn1，在第12ms的时候单击btn2。基于单线程执行模型，单击按钮之后不会立即执行对应的处理函数，因为一个任务一旦开始就不会被另一个任务中断。因此，在主线程执行的15ms期间，按钮的单击处理函数放入队列。当主线程执行完成也就是15ms之后，程序开始处理微任务，因为当前不存在微任务，跳过此步骤，开始执行更新UI。</p>
 <p>​    之后进入第二次循环，也就是开始执行btn1的处理函数，需要运行8ms，btn2处理函数在队列中等待。当btn1处理函数执行完之后，浏览器检查微任务是否存在和是否更新UI，删除任务队列里的btn1的处理函数。</p>
 <p>​    最后进入第三次循环，开始执行btn2的处理函数，需要运行5ms，处理函数执行完之后，检查微任务和是否需要更新UI，删除任务队列里的btn2的处理函数，最终任务队列为空，循环结束。</p>
-<h4 id="同时含有宏任务和微任务"><a href="#同时含有宏任务和微任务" class="headerlink" title="同时含有宏任务和微任务"></a>同时含有宏任务和微任务</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 主线程JavaScript运行15ms</span></div><div class="line">btn1.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">       运行 <span class="number">4</span>ms </div><div class="line">    &#125;);</div><div class="line">    运行 <span class="number">8</span>ms </div><div class="line">&#125;, <span class="literal">false</span>);</div><div class="line">btn2.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;运行 <span class="number">5</span>ms&#125;, <span class="literal">false</span>);</div></pre></td></tr></table></figure>
+<h4 id="同时含有宏任务和微任务"><a href="#同时含有宏任务和微任务" class="headerlink" title="同时含有宏任务和微任务"></a>同时含有宏任务和微任务</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 主线程JavaScript运行15ms</span></span><br><span class="line">btn1.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">       运行 <span class="number">4</span>ms </span><br><span class="line">    &#125;);</span><br><span class="line">    运行 <span class="number">8</span>ms </span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br><span class="line">btn2.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;运行 <span class="number">5</span>ms&#125;, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
 <p>本例中在btn1的事件处理函数里增加了一个立即兑现的Promise，需要运行4ms。</p>
 <p>现在代码的执行顺序为：</p>
 <pre><code>1. 主线程执行15ms，在5ms和12ms的时候分别将处理函数放入任务队列，更新UI。
@@ -206,7 +206,7 @@ ga('send', 'pageview');
 </code></pre><h3 id="计时器"><a href="#计时器" class="headerlink" title="计时器"></a>计时器</h3><p>基于上面的事件循环机制，现在我们来看一种特殊类型的事件：<em>计时器</em>。浏览器提供了两种创建计时器的方法 <code>setTimeout</code> 和 <code>setInterval</code>。 他们都挂载在 <code>window</code> 对象上。</p>
 <p> <code>setTimeout</code>：在指定的延迟时间结束时执行一次回调函数，返回标识计时器的唯一值，可用于取消定时器（<code>clearTimeout(id)</code>）。</p>
 <p><code>setInterval</code>：按照指定的延迟间隔不断的执行回调函数，返回标识计时器的唯一值，可用于取消定时器（<code>clearInterval(id)</code>）。</p>
-<h4 id="事件循环中的定时器"><a href="#事件循环中的定时器" class="headerlink" title="事件循环中的定时器"></a>事件循环中的定时器</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 主线程JavaScript运行18ms</span></div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    运行<span class="number">6</span>ms;</div><div class="line">&#125;, <span class="number">10</span>);</div><div class="line">setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    运行<span class="number">8</span>ms;</div><div class="line">&#125;, <span class="number">10</span>);</div><div class="line">btn1.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;运行 <span class="number">10</span>ms&#125;, <span class="literal">false</span>);</div></pre></td></tr></table></figure>
+<h4 id="事件循环中的定时器"><a href="#事件循环中的定时器" class="headerlink" title="事件循环中的定时器"></a>事件循环中的定时器</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 主线程JavaScript运行18ms</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    运行<span class="number">6</span>ms;</span><br><span class="line">&#125;, <span class="number">10</span>);</span><br><span class="line">setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    运行<span class="number">8</span>ms;</span><br><span class="line">&#125;, <span class="number">10</span>);</span><br><span class="line">btn1.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;运行 <span class="number">10</span>ms&#125;, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
 <p>👆代码的执行过程是什么呢？</p>
 <p>现在我们想象一下主线程代码需要运行18ms，在第6ms的时候用户点击了按钮，在第10ms延迟计时器到期，间隔计时器第一次触发。</p>
 <p>我们知道一个任务一旦开始执行，就无法被其他任务中断。所以，6ms将事件处理函数加入队列，10ms分别将延迟计时器和间隔计时器回调放入队列。运行到18m主线程执行完毕，检查微任务队列和更新UI，进入下一个时间循环。开始执行btn1事件回调，运行10ms，这时候在btn1事件回调运行的过程中，<em>间隔计时器第二次到期，但是任务队列里面已经有一个间隔计时器处理函数</em>，所以忽略这个处理函数。btn1事件回调运行结束，检查微任务队列和更新UI，进入下一个事件循环。开始执行延迟计时器处理函数，运行6ms，在这个过程中间隔计时器第三次到期，但是由于任务队列已经有了处理函数，继续忽略。延迟计时器处理函数运行完毕，检查微任务队列和更新UI，进入下一个事件循环。现在开始执行间隔计时器处理函数，运行8ms，在这期间间隔计时器第四次到期，这时候任务队列里没有处理函数，所以将这次的处理函数放入任务队列，间隔定时器处理函数运行完成，检查微任务队列和更新UI，进入下一个事件循环，然后重复运行间隔定时器……</p>
@@ -217,57 +217,41 @@ ga('send', 'pageview');
         </div>
         <footer class="article-footer">
             
-    <div class="jiathis_style">
-    <span class="jiathis_txt">分享到：</span>
-    <a class="jiathis_button_qzone">QQ空间</a>
-    <a class="jiathis_button_tsina">新浪微博</a>
-    <a class="jiathis_button_tqq">腾讯微博</a>
-    <a class="jiathis_button_weixin">微信</a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
-    <a class="jiathis_counter_style"></a>
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
 </div>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
 <style>
-    .jiathis_style div:first-child:not(.jiadiv_01) {
-        width: auto !important;
-        border: none !important;
-    }
-    .jiathis_style .jiadiv_01 {
-        margin: 10px 0;
+    .bdshare_popup_box {
         border-radius: 4px;
         border: #e1e1e1 solid 1px;
     }
-    .jiathis_style .jiadiv_01 div:first-child {
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
         display: none;
     }
-    .jiathis_style .jiadiv_02 {
-        padding: 7px 0 !important;
-    }
-    .jiathis_style .jiadiv_02 .jiatitle {
-        width: 85px;
-        border: none;
+    .bdshare_popup_bottom {
         height: auto;
-        margin: 3px 10px;
-        padding: 6px 10px;
-        border-radius: 4px;
-    }
-    .jiathis_style .jiadiv_02 .jiatitle:hover {
-        border: none;
-    }
-    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
-        margin-left: 0;
-    }
-    .jiathis_style .jtico:hover {
-        opacity: 1;
-    }
-    .jiathis_style .ckepopBottom,
-    .jiathis_style .centerBottom {
-        width: auto !important;
         padding: 5px;
-        background: #f7f7f7;
     }
 </style>
-
 
 
 
@@ -277,8 +261,9 @@ ga('send', 'pageview');
 
     <section id="comments">
     
-        
-    <div id="uyan_frame"></div>
+      
+    <div class="fb-comments" data-width="100%" data-href="http://hero-guo.com/2018/07/11/javascript事件循环探索/" data-num-posts="5"></div>
+
 
     
     </section>
@@ -338,6 +323,16 @@ ga('send', 'pageview');
         
 <nav id="article-nav">
     
+        <a href="/2018/12/02/在-React-项目中使用-Redux-和-Redux-Saga/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            在 React 项目中使用 Redux 和 Redux-Saga
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
     
         <a href="/2018/02/05/扩展原生Number/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
@@ -356,6 +351,26 @@ ga('send', 'pageview');
         <h3 class="widget-title">recents</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/02/在-React-项目中使用-Redux-和-Redux-Saga/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2018/12/02/在-React-项目中使用-Redux-和-Redux-Saga/" class="title">在 React 项目中使用 Redux 和 Redux-Saga</a></p>
+                            <p class="item-date"><time datetime="2018-12-02T13:52:32.000Z" itemprop="datePublished">2018-12-02</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -437,26 +452,6 @@ ga('send', 'pageview');
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/11/06/arr-uniq/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
-                            <p class="item-title"><a href="/2017/11/06/arr-uniq/" class="title">数据去重</a></p>
-                            <p class="item-date"><time datetime="2017-11-05T16:00:00.000Z" itemprop="datePublished">2017-11-06</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -466,7 +461,7 @@ ga('send', 'pageview');
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -476,7 +471,7 @@ ga('send', 'pageview');
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事件/">事件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事件循环/">事件循环</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据去重/">数据去重</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/柯里化/">柯里化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/继承/">继承</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闭包/">闭包</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redux/">Redux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redux-Saga/">Redux-Saga</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事件/">事件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事件循环/">事件循环</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据去重/">数据去重</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/柯里化/">柯里化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/继承/">继承</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闭包/">闭包</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -486,7 +481,7 @@ ga('send', 'pageview');
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/ES6/" style="font-size: 15px;">ES6</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/事件/" style="font-size: 10px;">事件</a> <a href="/tags/事件循环/" style="font-size: 10px;">事件循环</a> <a href="/tags/数据去重/" style="font-size: 10px;">数据去重</a> <a href="/tags/数据结构与算法/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/柯里化/" style="font-size: 10px;">柯里化</a> <a href="/tags/继承/" style="font-size: 10px;">继承</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a>
+            <a href="/tags/ES6/" style="font-size: 15px;">ES6</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/Redux/" style="font-size: 10px;">Redux</a> <a href="/tags/Redux-Saga/" style="font-size: 10px;">Redux-Saga</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/事件/" style="font-size: 10px;">事件</a> <a href="/tags/事件循环/" style="font-size: 10px;">事件循环</a> <a href="/tags/数据去重/" style="font-size: 10px;">数据去重</a> <a href="/tags/数据结构与算法/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/柯里化/" style="font-size: 10px;">柯里化</a> <a href="/tags/继承/" style="font-size: 10px;">继承</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a>
         </div>
     </div>
 
@@ -530,7 +525,14 @@ ga('send', 'pageview');
 </footer>
         
     
-    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2130773"></script>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en/sdk.js#xfbml=1&version=v2.8";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 
 
 

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     
     <title>ES6-MIXIN | Neil&#39;s site</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="JavaScript,ES6" />
+        <meta name="keywords" content="JavaScript,ES6">
     
     <meta name="description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647 //通过class实现混入//extends 可以继承动态构造的类const Mixin = Sup =&amp;gt; class extends Sup &amp;#123;    //构造方法    //this关键字则代表实例对象">
 <meta name="keywords" content="JavaScript,ES6">
@@ -23,11 +23,11 @@
     
 
     
-        <link rel="alternate" href="atom.xml" title="Neil&#39;s site" type="application/atom+xml" />
+        <link rel="alternate" href="atom.xml" title="Neil&#39;s site" type="application/atom+xml">
     
 
     
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico">
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -59,7 +59,7 @@ ga('send', 'pageview');
     
 
 </head>
-
+</html>
 <body>
     <div id="wrap">
         <header id="header">
@@ -81,19 +81,19 @@ ga('send', 'pageview');
                     <div class="nav-container-inner">
                         <ul id="main-nav">
                             
-                                <li class="main-nav-list-item" >
+                                <li class="main-nav-list-item">
                                     <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
-                                <li class="main-nav-list-item" >
+                                <li class="main-nav-list-item">
                                     <a class="main-nav-list-link" href="/categories/JavaScript">JavaScript</a>
                                 </li>
                             
-                                <li class="main-nav-list-item" >
+                                <li class="main-nav-list-item">
                                     <a class="main-nav-list-link" href="/categories/Notes">Notes</a>
                                 </li>
                             
-                                <li class="main-nav-list-item" >
+                                <li class="main-nav-list-item">
                                     <a class="main-nav-list-link" href="/about/index.html">About</a>
                                 </li>
                             
@@ -102,14 +102,14 @@ ga('send', 'pageview');
                             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <input type="text" class="ins-search-input" placeholder="Type something...">
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -154,7 +154,7 @@ ga('send', 'pageview');
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-ES6-mixin" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-ES6-mixin" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
@@ -186,62 +186,46 @@ ga('send', 'pageview');
         
         
         <div class="article-entry" itemprop="articleBody">
-            <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">//通过class实现混入</span></div><div class="line"><span class="comment">//extends 可以继承动态构造的类</span></div><div class="line"><span class="keyword">const</span> Mixin = <span class="function"><span class="params">Sup</span> =&gt;</span> <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">Sup</span> </span>&#123;</div><div class="line">    <span class="comment">//构造方法</span></div><div class="line">    <span class="comment">//this关键字则代表实例对象</span></div><div class="line">    <span class="keyword">constructor</span>(...args) &#123;</div><div class="line">        <span class="comment">//（1）作为函数调用时（即super(...args)），super代表父类的构造函数。</span></div><div class="line">        <span class="comment">//（2）作为对象调用时（即super.prop或super.method()），super代表父类。注意，此时super即可以引用父类实例的属性和方法，也可以引用父类的静态方法。</span></div><div class="line">        <span class="keyword">super</span>(...args);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Widget</span> </span>&#123;</div><div class="line">    <span class="keyword">constructor</span>(width, height, $elem) &#123;</div><div class="line">        <span class="built_in">Object</span>.assign(<span class="keyword">this</span>, &#123;</div><div class="line">            width,</div><div class="line">            height,</div><div class="line">            <span class="attr">$elem</span>: <span class="literal">null</span></div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">    render($where) &#123;</div><div class="line">         <span class="keyword">if</span> (<span class="keyword">this</span>.$elem) &#123;</div><div class="line">             <span class="keyword">this</span>.$elem.css(&#123;</div><div class="line">             <span class="attr">width</span>: <span class="keyword">this</span>.width + <span class="string">'px'</span>,</div><div class="line">             <span class="attr">height</span>: <span class="keyword">this</span>.height + <span class="string">'px'</span></div><div class="line">            &#125;).appendTo($where);</div><div class="line">          &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Button</span> <span class="keyword">extends</span> <span class="title">Mixin</span>(<span class="title">Widget</span>) </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(width, height, label)&#123;</div><div class="line">    <span class="keyword">super</span>(width, height);</div><div class="line">    <span class="keyword">this</span>.label = label;</div><div class="line">    <span class="keyword">this</span>.$elem = $(<span class="string">'&lt;button&gt;'</span>).text(<span class="keyword">this</span>.label);</div><div class="line">  &#125;</div><div class="line">  render($where) &#123;</div><div class="line">    <span class="keyword">super</span>.render($where);</div><div class="line">    <span class="keyword">this</span>.$elem.click(<span class="keyword">this</span>.onClick);</div><div class="line">  &#125;</div><div class="line">  onClick() &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Button'</span> + <span class="keyword">this</span>.label + <span class="string">'clicked!'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">const</span> $body = $(<span class="built_in">document</span>.body) || <span class="built_in">document</span>.body;</div><div class="line"><span class="keyword">let</span> btn = <span class="keyword">new</span> Button(<span class="number">125</span>, <span class="number">30</span>, <span class="string">'hello world'</span>);</div><div class="line">btn.render($body);</div></pre></td></tr></table></figure>
+            <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//通过class实现混入</span></span><br><span class="line"><span class="comment">//extends 可以继承动态构造的类</span></span><br><span class="line"><span class="keyword">const</span> Mixin = <span class="function"><span class="params">Sup</span> =&gt;</span> <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">Sup</span> </span>&#123;</span><br><span class="line">    <span class="comment">//构造方法</span></span><br><span class="line">    <span class="comment">//this关键字则代表实例对象</span></span><br><span class="line">    <span class="keyword">constructor</span>(...args) &#123;</span><br><span class="line">        <span class="comment">//（1）作为函数调用时（即super(...args)），super代表父类的构造函数。</span></span><br><span class="line">        <span class="comment">//（2）作为对象调用时（即super.prop或super.method()），super代表父类。注意，此时super即可以引用父类实例的属性和方法，也可以引用父类的静态方法。</span></span><br><span class="line">        <span class="keyword">super</span>(...args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Widget</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(width, height, $elem) &#123;</span><br><span class="line">        <span class="built_in">Object</span>.assign(<span class="keyword">this</span>, &#123;</span><br><span class="line">            width,</span><br><span class="line">            height,</span><br><span class="line">            $elem: <span class="literal">null</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    render($where) &#123;</span><br><span class="line">         <span class="keyword">if</span> (<span class="keyword">this</span>.$elem) &#123;</span><br><span class="line">             <span class="keyword">this</span>.$elem.css(&#123;</span><br><span class="line">             width: <span class="keyword">this</span>.width + <span class="string">'px'</span>,</span><br><span class="line">             height: <span class="keyword">this</span>.height + <span class="string">'px'</span></span><br><span class="line">            &#125;).appendTo($where);</span><br><span class="line">          &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Button</span> <span class="keyword">extends</span> <span class="title">Mixin</span>(<span class="title">Widget</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(width, height, label)&#123;</span><br><span class="line">    <span class="keyword">super</span>(width, height);</span><br><span class="line">    <span class="keyword">this</span>.label = label;</span><br><span class="line">    <span class="keyword">this</span>.$elem = $(<span class="string">'&lt;button&gt;'</span>).text(<span class="keyword">this</span>.label);</span><br><span class="line">  &#125;</span><br><span class="line">  render($where) &#123;</span><br><span class="line">    <span class="keyword">super</span>.render($where);</span><br><span class="line">    <span class="keyword">this</span>.$elem.click(<span class="keyword">this</span>.onClick);</span><br><span class="line">  &#125;</span><br><span class="line">  onClick() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Button'</span> + <span class="keyword">this</span>.label + <span class="string">'clicked!'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> $body = $(<span class="built_in">document</span>.body) || <span class="built_in">document</span>.body;</span><br><span class="line"><span class="keyword">let</span> btn = <span class="keyword">new</span> Button(<span class="number">125</span>, <span class="number">30</span>, <span class="string">'hello world'</span>);</span><br><span class="line">btn.render($body);</span><br></pre></td></tr></table></figure>
 
         </div>
         <footer class="article-footer">
             
-    <div class="jiathis_style">
-    <span class="jiathis_txt">分享到：</span>
-    <a class="jiathis_button_qzone">QQ空间</a>
-    <a class="jiathis_button_tsina">新浪微博</a>
-    <a class="jiathis_button_tqq">腾讯微博</a>
-    <a class="jiathis_button_weixin">微信</a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
-    <a class="jiathis_counter_style"></a>
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
 </div>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
 <style>
-    .jiathis_style div:first-child:not(.jiadiv_01) {
-        width: auto !important;
-        border: none !important;
-    }
-    .jiathis_style .jiadiv_01 {
-        margin: 10px 0;
+    .bdshare_popup_box {
         border-radius: 4px;
         border: #e1e1e1 solid 1px;
     }
-    .jiathis_style .jiadiv_01 div:first-child {
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
         display: none;
     }
-    .jiathis_style .jiadiv_02 {
-        padding: 7px 0 !important;
-    }
-    .jiathis_style .jiadiv_02 .jiatitle {
-        width: 85px;
-        border: none;
+    .bdshare_popup_bottom {
         height: auto;
-        margin: 3px 10px;
-        padding: 6px 10px;
-        border-radius: 4px;
-    }
-    .jiathis_style .jiadiv_02 .jiatitle:hover {
-        border: none;
-    }
-    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
-        margin-left: 0;
-    }
-    .jiathis_style .jtico:hover {
-        opacity: 1;
-    }
-    .jiathis_style .ckepopBottom,
-    .jiathis_style .centerBottom {
-        width: auto !important;
         padding: 5px;
-        background: #f7f7f7;
     }
 </style>
-
 
 
 
@@ -251,8 +235,9 @@ ga('send', 'pageview');
 
     <section id="comments">
     
-        
-    <div id="uyan_frame"></div>
+      
+    <div class="fb-comments" data-width="100%" data-href="http://hero-guo.com/2016/12/11/ES6-mixin/" data-num-posts="5"></div>
+
 
     
     </section>
@@ -338,6 +323,26 @@ ga('send', 'pageview');
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2018/12/02/在-React-项目中使用-Redux-和-Redux-Saga/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2018/12/02/在-React-项目中使用-Redux-和-Redux-Saga/" class="title">在 React 项目中使用 Redux 和 Redux-Saga</a></p>
+                            <p class="item-date"><time datetime="2018-12-02T13:52:32.000Z" itemprop="datePublished">2018-12-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2018/07/11/javascript事件循环探索/" class="thumbnail">
     
     
@@ -415,26 +420,6 @@ ga('send', 'pageview');
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/11/06/arr-uniq/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
-                            <p class="item-title"><a href="/2017/11/06/arr-uniq/" class="title">数据去重</a></p>
-                            <p class="item-date"><time datetime="2017-11-05T16:00:00.000Z" itemprop="datePublished">2017-11-06</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -444,7 +429,7 @@ ga('send', 'pageview');
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -454,7 +439,7 @@ ga('send', 'pageview');
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事件/">事件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事件循环/">事件循环</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据去重/">数据去重</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/柯里化/">柯里化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/继承/">继承</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闭包/">闭包</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redux/">Redux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redux-Saga/">Redux-Saga</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事件/">事件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事件循环/">事件循环</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据去重/">数据去重</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/柯里化/">柯里化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/继承/">继承</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闭包/">闭包</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -464,7 +449,7 @@ ga('send', 'pageview');
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/ES6/" style="font-size: 15px;">ES6</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/事件/" style="font-size: 10px;">事件</a> <a href="/tags/事件循环/" style="font-size: 10px;">事件循环</a> <a href="/tags/数据去重/" style="font-size: 10px;">数据去重</a> <a href="/tags/数据结构与算法/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/柯里化/" style="font-size: 10px;">柯里化</a> <a href="/tags/继承/" style="font-size: 10px;">继承</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a>
+            <a href="/tags/ES6/" style="font-size: 15px;">ES6</a> <a href="/tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/Redux/" style="font-size: 10px;">Redux</a> <a href="/tags/Redux-Saga/" style="font-size: 10px;">Redux-Saga</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/事件/" style="font-size: 10px;">事件</a> <a href="/tags/事件循环/" style="font-size: 10px;">事件循环</a> <a href="/tags/数据去重/" style="font-size: 10px;">数据去重</a> <a href="/tags/数据结构与算法/" style="font-size: 10px;">数据结构与算法</a> <a href="/tags/柯里化/" style="font-size: 10px;">柯里化</a> <a href="/tags/继承/" style="font-size: 10px;">继承</a> <a href="/tags/闭包/" style="font-size: 10px;">闭包</a>
         </div>
     </div>
 
@@ -508,7 +493,14 @@ ga('send', 'pageview');
 </footer>
         
     
-    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2130773"></script>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en/sdk.js#xfbml=1&version=v2.8";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 
 
 
