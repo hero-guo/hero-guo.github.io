@@ -3,13 +3,13 @@
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     
-    <title>Tag: 继承 | Neil&#39;s site</title>
+    <title>Archive: 2019/1 | Neil&#39;s site</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="description" content="javascript nodejs react">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Neil&#39;s site">
-<meta property="og:url" content="http://hero-guo.com/tags/继承/index.html">
+<meta property="og:url" content="http://hero-guo.com/archives/2019/01/index.html">
 <meta property="og:site_name" content="Neil&#39;s site">
 <meta property="og:description" content="javascript nodejs react">
 <meta property="og:locale" content="en">
@@ -146,7 +146,7 @@ ga('send', 'pageview');
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-tag"></i>Tag: <em>继承</em>
+    <i class="icon fa fa-archive"></i>Archive: 2019/1
     </h1>
 </div>
                         <div class="main-body-content">
@@ -158,7 +158,7 @@ ga('send', 'pageview');
         
         <section class="archives-wrap">
             <div class="archive-year-wrap">
-                <a href="/archives/2017" class="archive-year"><i class="icon fa fa-calendar-o"></i>2017</a>
+                <a href="/archives/2019" class="archive-year"><i class="icon fa fa-calendar-o"></i>2019</a>
             </div>
             <div class="archives">
     
@@ -169,17 +169,17 @@ ga('send', 'pageview');
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2017/02/12/object-prototype/" class="thumbnail">
+        <a href="/2019/01/06/git/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(/2019/01/06/git/svn.png)" alt="git 使用" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="fb-comments-count" data-href="http://hero-guo.com/2017/02/12/object-prototype/">0</span>
+        <span class="fb-comments-count" data-href="http://hero-guo.com/2019/01/06/git/">0</span>
     
 </span>
 
@@ -189,53 +189,22 @@ ga('send', 'pageview');
         
         <div class="article-meta">
             <div class="category">
-            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+            <a class="article-category-link" href="/categories/Notes/">Notes</a>
             </div>
-            <div class="date"><time datetime="2017-02-12T06:57:15.000Z" itemprop="datePublished">2017-02-12</time></div>
+            <div class="date"><time datetime="2019-01-06T06:02:41.000Z" itemprop="datePublished">2019-01-06</time></div>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/02/12/object-prototype/">类的继承</a>
+        <a href="/2019/01/06/git/">git 使用</a>
         </h1>
     
 
         <p class="article-excerpt">
-            
-混合复制
-//复制source对象的属性
-function mixin(source, target) {
-    for (var key in source) {
-        if (!(key in target)) {
-            target[key] = source[key];
-        }
-    }
-    return target;
-}
+            版本控制 版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。
 
-var Vehicle = {
-    engines: 1,
-    ignition: function() {
-        console.log(&quot; Turning on my forward! &quot;);
-    },
-    drive: function() {
-        this.ignition();
-        console.log(&quot; Steering and moving forward! &quot;);
-    }
-};
-
-//Car复制Vehicle的属性值和函数引用
-var Car = mixin(Vehicle, {
-    wheels: 4,
-    drive: function() {
-    //显示指定Vehicle对象调用dirve方法
-    //如果直接执行Vehicle.dirve()，函数调用中的this就会绑定到Vehicle上，所以使用.call(this)来确保dirve在Car对象的上下文中执行;
-    Vehicle.drive.call(this);
-        console.log(&quot; Rolling on all &quot; + this.wheels + &quot;wheels!&quot;);
-    }
-});
-Car.drive();
-
+集中化的版本控制系统（SVN）有一个单一的集中管理的服务器，保存所有文件的修订版本，而协同工作的人们都通过客户端连到这台服务器，取出最新的文件或者提交更新。但是这么做有一个缺点是中央服务器的单点故障，如果中心数据库所在的磁盘发生损坏，又没有做恰当备份，毫无疑问你将丢失所有数据。
+分布式版本控制系统（GIT）客户端并不只提取最新版本的文件快照，而是把代码仓库完整地镜像下来。 这么一来，任何一处协同工作用的服务器发生故障，事后都可以用任何一个镜像出来的本地仓库恢复。 因为每一次的克隆操作，实际上都是一次对代码仓库的完整备份。
         </p>
     </div>
 </article>
